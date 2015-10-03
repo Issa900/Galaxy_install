@@ -7,33 +7,33 @@ import sys
 
 
 def count_seq (fasta_in, file_out): # je définis une fonction qui prend 2 arguments
-    nbseq  = 0 
-    seqLen = 0 
-    Nom_seq = '' 
-    f   = open (fasta_in, 'r') 
-    out = open (file_out, 'w') 
-    for line in f:
-        line = line[:-1]
+    nbseq  = 0 			    #	initialise le compteur pour le nombre de séquences
+    seqLen = 0 			    #	initialise le compteur pour la longeur de la séquence
+    Nom_seq = '' 		    #	créer une liste vide
+    f   = open (fasta_in, 'r') 	    #	ouverture et lecture de mon fichier fasta
+    out = open (file_out, 'w')      #	ouverture et  ecriture de mon fichier de sortie  
+    for line in f:		    # Pour chaque ligne de mon fichier input
+        line = line[:-1]	    # enlève le dernier caractère de la ligne
         
-        if line[0] == '>':
-			nbseq = nbseq + 1
-			Nom_seq = line[1:]
-			print nbseq		
+        if line[0] == '>':	    # Si la ligne débute par '>'
+			nbseq = nbseq + 1	# incrementer le compteur nbseq
+			Nom_seq = line[1:]	# Nom_seq = la ligne excepté le 1er caractère ('>')
+			#print nbseq		
 			
-        if line[0] != '>':
-            seqLen = len (line)
+        if line[0] != '>':			# Si la ligne ne débute pas par '>'
+            seqLen = len (line)			# seq = longeur de la ligne (qui correspond à la séquence)
             #print seqLen
             
-        else:
-			line[0] == ''
-			continue
+        else:					
+			line[0] == ''		# Sinon la ligne débute par un vide
+			continue		# Dans ce cas on fait rien (l'utilité de cette ligne est d'éviter de faire tourner ma boucle deux fois)
 		
      
   out.write ('La seq ' + (Nom_seq) + ' contient ' + str(seqLen) + ' nucléotides\n') 	 	
   out.write ('Le fichier '+ fasta_in + ' contient ' + str(nbseq) + ' sequences\n') 
   out.close()
   f.close()   
-  return Nom_seq
+  return 
   
 monfichier_in = sys.argv[1] # le fichier input est passé comme 1er argument
 monfichier_out = sys.argv[2] # le fichier de sortie en 2nd argument
