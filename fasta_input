@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+
+'''Prend 2 arguments: un fichier d'entrée fasta et un fichier de sortie avec le nom de chaque
+séquence
+
+import sys
+
+
+def count_seq (fasta_in, file_out):
+    nbseq  = 0
+    seqLen = 0
+    Nom_seq = ''
+    f   = open (fasta_in, 'r')
+    out = open (file_out, 'w')
+    for line in f:
+        line = line[:-1]
+        
+        if line[0] == '>':
+			nbseq = nbseq + 1
+			Nom_seq = line[1:]
+			print nbseq		
+			
+        if line[0] != '>':
+            seqLen = len (line)
+            #print seqLen
+            
+        else:
+			line[0] == ''
+			continue
+		
+    #print nbseq     
+    #out.write ()   
+	out.write ('La seq ' + (Nom_seq) + ' contient ' + str(seqLen) + ' nucléotides\n') 	 	
+  out.write ('Le fichier '+ fasta_in + ' contient ' + str(nbseq) + ' sequences\n') 
+  out.close()
+  f.close()   
+  return Nom_seq
+  
+monfichier_in = sys.argv[1]
+monfichier_out = sys.argv[2]
+count_seq(sys.argv[1], sys.argv[2])
