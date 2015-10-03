@@ -1,17 +1,17 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- 
 
 '''Prend 2 arguments: un fichier d'entrée fasta et un fichier de sortie avec le nom de chaque
-séquence
+séquence, la taille de la séquence et le nombre de séquence dans le fichier input'''
 
-import sys
+import sys 
 
 
-def count_seq (fasta_in, file_out):
-    nbseq  = 0
-    seqLen = 0
-    Nom_seq = ''
-    f   = open (fasta_in, 'r')
-    out = open (file_out, 'w')
+def count_seq (fasta_in, file_out): # je définis une fonction qui prend 2 arguments
+    nbseq  = 0 
+    seqLen = 0 
+    Nom_seq = '' 
+    f   = open (fasta_in, 'r') 
+    out = open (file_out, 'w') 
     for line in f:
         line = line[:-1]
         
@@ -28,14 +28,13 @@ def count_seq (fasta_in, file_out):
 			line[0] == ''
 			continue
 		
-    #print nbseq     
-    #out.write ()   
-	out.write ('La seq ' + (Nom_seq) + ' contient ' + str(seqLen) + ' nucléotides\n') 	 	
+     
+  out.write ('La seq ' + (Nom_seq) + ' contient ' + str(seqLen) + ' nucléotides\n') 	 	
   out.write ('Le fichier '+ fasta_in + ' contient ' + str(nbseq) + ' sequences\n') 
   out.close()
   f.close()   
   return Nom_seq
   
-monfichier_in = sys.argv[1]
-monfichier_out = sys.argv[2]
+monfichier_in = sys.argv[1] # le fichier input est passé comme 1er argument
+monfichier_out = sys.argv[2] # le fichier de sortie en 2nd argument
 count_seq(sys.argv[1], sys.argv[2])
